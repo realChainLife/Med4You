@@ -4,10 +4,10 @@ import json
 c=remedies()
 
 def remedies(desc):
-	all_matches = c.remedies()
-	for match in all_matches:
-		if match['mchdesc'].title() == desc:
-			return match['id']
+	all_remedies = c.remedies()
+	for remedies in all_remedies:
+		if remedies['mchdesc'].title() == desc:
+			return remedies['id']
 	else:
 		return None
 
