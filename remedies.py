@@ -1,5 +1,4 @@
 from bot import remedies
-from pprint import pprint
 import json
 
 c=remedies()
@@ -33,18 +32,16 @@ def main():
 
 	desc = remedies[choice-1].title()
 	print('\n')
-	print('1. Live Score')
-	print('2. Full Score Card')
-	print('3. Commentary')
+	print('1. remedies')
 	choice = int(input('\nEnter choice (number): '))
-	while choice <1 or choice > 3:
+	while choice >= 1:
 		print('\nWrong choice')
 		choice = int(input('\nEnter choice again: '))
 	print('\n')
 	if choice ==1:
 		ref = 'y'
 		while ref =='y':
-			print(live_score(desc))
+			print(remedies(desc))
 			ref = input('\n\nDo you want to refresh:(y/n) ')
 			print('\n')
 
