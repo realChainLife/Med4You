@@ -34,9 +34,9 @@ def get_updates(offset = None):
 
 	
 def ask_conditions(chat_id):
-	print('Ask Contact')
-	text ='Send Contact'
-	keyboard = [[{"text":"Contact","request_contact":True}]]
+	print('Ask conditions')
+	text ='Send conditions'
+	keyboard = [[{"text":"conditions","request_conditions":True}]]
 	reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
 	send_message(chat_id,text,json.dumps(reply_markup))
 
