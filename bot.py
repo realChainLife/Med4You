@@ -31,25 +31,6 @@ def get_updates(offset = None):
 		
 		except:
 			pass;
-	
-def get_last(data):
-	
-	results = data['result']
-	count = len(results)
-	last = count -1
-	last_update = results[last]
-	return last_update
-
-
-def get_last_id_text(updates):
-	last_update = get_last(updates)
-	chat_id =last_update['message']['chat']['id']
-	update_id = last_update['update_id']
-	try:
-		text = last_update['message']['text']
-	except:
-		text = ''
-	return chat_id,text,update_id
 
 	
 def ask_conditions(chat_id):
