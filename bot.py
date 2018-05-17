@@ -61,15 +61,15 @@ def ask_conditions(chat_id):
 
 
 def ask_remedies(chat_id):
-	print('Ask Location')
-	text ='Send Location'
-	keyboard = [[{"text":"Location","request_location":True}]]
+	print('Ask remedies')
+	text ='Send remedies'
+	keyboard = [[{"text":"remedies","request_location":True}]]
 	reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
 	send_message(chat_id,text,json.dumps(reply_markup))
 
 
 def get_remedies(update_id):
-	print('Get Location')
+	print('Get remedies')
 	updates = get_updates(update_id+1)
 	location = get_last(updates)['message']['location']
 	chat_id,text,update_id = get_last_id_text(updates)
