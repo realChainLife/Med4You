@@ -21,21 +21,6 @@ def get_remedies():
 	return matches
 
 
-def commentary(desc):
-	mid = match_id(desc)
-	data = c.commentary(mid)
-	comm ={}
-	comm['matchinfo'] = "{}, {}".format(data['matchinfo']['mnum'],data['matchinfo']['mchdesc'])
-	comm['status'] = "{}, {}".format(data['matchinfo']['mchstate'].title(),data['matchinfo']['status'])
-	comm['commentary'] = data['commentary']
-	text =''
-	text += comm['matchinfo'] + '\n' + comm['status'] + '\n\n'
-	for com in comm['commentary']:
-		text += "{}\n\n".format(com)
-
-	return text
-
-
 def main():
 	matches = all_matches()
 	print("\nALL MATCHES\n")
