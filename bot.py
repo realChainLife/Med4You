@@ -44,7 +44,7 @@ def ask_conditions(chat_id):
 def ask_remedies(chat_id):
 	print('Ask remedies')
 	text ='Send remedies'
-	keyboard = [[{"text":"remedies","request_location":True}]]
+	keyboard = [[{"text":"remedies","request_remedies":True}]]
 	reply_markup = {"keyboard":keyboard, "one_time_keyboard": True}
 	send_message(chat_id,text,json.dumps(reply_markup))
 
@@ -52,43 +52,41 @@ def ask_remedies(chat_id):
 def get_remedies(update_id):
 	print('Get remedies')
 	updates = get_updates(update_id+1)
-	location = get_last(updates)['message']['location']
+	remedies = get_last(updates)['message']['remedies']
 	chat_id,text,update_id = get_last_id_text(updates)
-	lat = str(location['latitude'])
-	lon = str(location['longitude'])
 	return lat,lon,update_id
 
 
 def conditions(chat_id,update_id):
 
 	message = 'Select'
-	commands =['Short News','Long News']
+	commands =['Short List','Long List']
 	reply_markup = reply_markup_maker(commands)
 	send_message(chat_id,message,reply_markup)
 	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
 
-	while text.lower() == 'news':
+	while text.lower() == 'list':
 		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
 		sleep(0.5)
 	print(text)
 
-	if text.lower() == 'short news':
+	if text.lower() == 'short list':
 		message= ''
-		news = short_news()
-		for i,n in enumerate(news,1):
+		list = short_list()
+		for i,n in enumerate(list,1):
 			message += str(i) + ". " + n.text + '\n\n'
 		send_message(chat_id,message)
 
-	elif text.lower() == 'long news':
+	elif text.lower() == 'long list':
 		message= ''
-		news = long_news()
-		for i,n in enumerate(news[:10],1):
+		list = long_list()
+		for i,n in enumerate(list[:10],1):
 			message += str(i) + ". " + n.text + '\n\n'
 		send_message(chat_id,message)
 
 def remedies(chat_id,update_id):
 	message = 'Select'
-	commands = all_matches()
+	commands = all_remedies()
 	reply_markup = reply_markup_maker(commands)
 	send_message(chat_id,message,reply_markup)
 	chat_id,desc,update_id= get_last_id_text(get_updates(update_id+1))
@@ -165,7 +163,7 @@ def menu(chat_id,text,update_id):
 		sleep(0.5)
 
 	if text.lower()=='conditions':
-		news(chat_id,update_id)
+		list(chat_id,update_id)
 
 	elif text.lower()=='remedies':
 		saavn(chat_id,update_id)
