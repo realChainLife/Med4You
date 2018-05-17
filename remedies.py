@@ -45,21 +45,6 @@ def main():
 			ref = input('\n\nDo you want to refresh:(y/n) ')
 			print('\n')
 
-	elif choice ==2:
-		ref = 'y'
-		while ref =='y':
-			print(scorecard(desc))
-			ref = input('\n\nDo you want to refresh:(y/n) ')
-			print('\n')
-
-	else:
-		ref = 'y'
-		while ref =='y':
-			print(commentary(desc))
-			ref = input('\n\nDo you want to refresh:(y/n) ')
-			print('\n')
-
-
 
 if __name__ == '__main__':
  	main()
