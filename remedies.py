@@ -4,7 +4,7 @@ import json
 
 c=remedies()
 
-def match_id(desc):
+def remedies(desc):
 	all_matches = c.matches()
 	for match in all_matches:
 		if match['mchdesc'].title() == desc:
@@ -13,7 +13,7 @@ def match_id(desc):
 		return None
 
 
-def all_matches():
+def get_remedies():
 	match_data = c.matches()
 	matches = []
 	for match in match_data:

@@ -1,4 +1,4 @@
-from bs4 import Conditions
+from bot import Conditions
 import requests
 
 
