@@ -5,7 +5,7 @@ import json
 c=remedies()
 
 def remedies(desc):
-	all_matches = c.matches()
+	all_matches = c.remedies()
 	for match in all_matches:
 		if match['mchdesc'].title() == desc:
 			return match['id']
@@ -14,24 +14,24 @@ def remedies(desc):
 
 
 def get_remedies():
-	match_data = c.matches()
-	matches = []
-	for match in match_data:
-		matches.append(match['mchdesc'])
-	return matches
+	remedies_data = c.remedies()
+	remedies = []
+	for remedies in remedies_data:
+		remedies.append(remedies['mchdesc'])
+	return remedies
 
 
 def main():
-	matches = all_matches()
-	print("\nALL MATCHES\n")
-	for i,m in enumerate(matches,1):
+	remedies = all_remedies()
+	print("\nALL REMEDIES\n")
+	for i,m in enumerate(remedies,1):
 		print("{}. {}".format(str(i),m))
 	choice = int(input('\nEnter choice (number): '))
-	while choice <1 or choice > len(matches):
+	while choice <1 or choice > len(remedies):
 		print('\nWrong choice')
 		choice = int(input('\nEnter choice again: '))
 
-	desc = matches[choice-1].title()
+	desc = remedies[choice-1].title()
 	print('\n')
 	print('1. Live Score')
 	print('2. Full Score Card')
