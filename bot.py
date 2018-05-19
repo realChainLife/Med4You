@@ -108,7 +108,7 @@ def remedies(chat_id,update_id):
 		send_message(chat_id,text)
 
 	elif text.lower() == 'guide':
-		text = commentary(desc)
+		text = guide(desc)
 		send_message(chat_id,text)
 
 
