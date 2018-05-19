@@ -92,7 +92,7 @@ def remedies(chat_id,update_id):
 	chat_id,desc,update_id= get_last_id_text(get_updates(update_id+1))
 	print(desc)
 
-	commands =['Score','Full Scorecard','Commentary']
+	commands =['Index','Common','Guide']
 	reply_markup = reply_markup_maker(commands)
 	send_message(chat_id,message,reply_markup)
 	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
