@@ -99,7 +99,7 @@ def remedies(chat_id,update_id):
 	print(text)	
 
 	if text.lower()=='index':
-		text = live_score(desc)
+		text = index(desc)
 		send_message(chat_id,text)
 
 	elif text.lower() == 'common':
