@@ -1,4 +1,4 @@
-from bot import Conditions
+from bot import conditions
 import requests
 
 
