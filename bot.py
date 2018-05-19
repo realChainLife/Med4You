@@ -98,16 +98,16 @@ def remedies(chat_id,update_id):
 	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
 	print(text)	
 
-	if text.lower()=='score':
+	if text.lower()=='index':
 		text = live_score(desc)
 		send_message(chat_id,text)
 
-	elif text.lower() == 'full scorecard':
+	elif text.lower() == 'common':
 		text = scorecard(desc)
 		print(text)
 		send_message(chat_id,text)
 
-	elif text.lower() == 'commentary':
+	elif text.lower() == 'guide':
 		text = commentary(desc)
 		send_message(chat_id,text)
 
