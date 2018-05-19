@@ -20,7 +20,7 @@ def get_updates(offset = None):
 		try:
 			URL = url + 'getUpdates'
 			if offset:
-				URL += '?offset={}'.format(offset) 
+				URL += '?offset={}'.format(offset)
 
 			res = requests.get(URL)
 			while (res.status_code !=200 or len(res.json()['result'])== 0):
@@ -28,11 +28,11 @@ def get_updates(offset = None):
 				res = requests.get(URL)
 			print(res.url)
 			return res.json()
-		
+
 		except:
 			pass;
 
-	
+
 def ask_conditions(chat_id):
 	print('Ask conditions')
 	text ='Send conditions'
@@ -63,10 +63,10 @@ def conditions(chat_id,update_id):
 	commands =['Short List','Long List']
 	reply_markup = reply_markup_maker(commands)
 	send_message(chat_id,message,reply_markup)
-	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
+	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
 
 	while text.lower() == 'list':
-		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
+		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
 		sleep(0.5)
 	print(text)
 
@@ -95,8 +95,8 @@ def remedies(chat_id,update_id):
 	commands =['Index','Common','Guide']
 	reply_markup = reply_markup_maker(commands)
 	send_message(chat_id,message,reply_markup)
-	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
-	print(text)	
+	chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
+	print(text)
 
 	if text.lower()=='index':
 		text = index(desc)
@@ -121,13 +121,13 @@ def welcome_note(chat_id, commands):
 
 
 def start(chat_id):
-	message = 'Wanna Start'	
+	message = 'Wanna Start'
 	reply_markup = reply_markup_maker(['Start'])
 	send_message(chat_id,message,reply_markup)
-	
-	chat_id,text,update_id= get_last_id_text(get_updates())	
+
+	chat_id,text,update_id= get_last_id_text(get_updates())
 	while(text.lower() != 'start'):
-		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
+		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
 		sleep(0.5)
 
 	return chat_id,text,update_id
@@ -137,10 +137,10 @@ def end(chat_id,text,update_id):
 	message = 'Do you wanna end?'
 	reply_markup = reply_markup_maker(['Yes','No'])
 	send_message(chat_id,message,reply_markup)
-	
+
 	new_text =text
 	while(text == new_text):
-		chat_id,new_text,update_id= get_last_id_text(get_updates(update_id+1))	
+		chat_id,new_text,update_id= get_last_id_text(get_updates(update_id+1))
 		sleep(1)
 
 	if new_text =='Yes':
@@ -153,13 +153,13 @@ def menu(chat_id,text,update_id):
 
 	commands = ['conditions','remedies']
 	welcome_note(chat_id, commands)
-	
+
 	while( text.lower() =='start'):
-		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
+		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
 		sleep(0.5)
 	print(text)
 	while text.lower() not in commands:
-		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))	
+		chat_id,text,update_id= get_last_id_text(get_updates(update_id+1))
 		sleep(0.5)
 
 	if text.lower()=='conditions':
@@ -171,19 +171,19 @@ def menu(chat_id,text,update_id):
 
 def main():
 	text= ''
-	chat_id,text,update_id= get_last_id_text(get_updates())	
+	chat_id,text,update_id= get_last_id_text(get_updates())
 	chat_id, text,update_id = start(chat_id)
 	print('Started')
-	
+
 	while text.lower() != 'y':
 		sleep(1)
 		text = 'start'
 		menu(chat_id,text,update_id)
 		text ='y'
-	
-		chat_id,text,update_id= get_last_id_text(get_updates())	
+
+		chat_id,text,update_id= get_last_id_text(get_updates())
 		text = end(chat_id,text,update_id)
-	
+
 
 if __name__ == '__main__':
 	main()
