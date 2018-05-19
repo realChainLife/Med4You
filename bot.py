@@ -103,7 +103,7 @@ def remedies(chat_id,update_id):
 		send_message(chat_id,text)
 
 	elif text.lower() == 'common':
-		text = scorecard(desc)
+		text = common(desc)
 		print(text)
 		send_message(chat_id,text)
 
